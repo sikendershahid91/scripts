@@ -1,0 +1,32 @@
+#MATLAB Preferences
+#Mon Oct 21 21:08:31 PDT 2019
+EditorCodeBlockDividers=Btrue
+MatlabExitConfirm=Bfalse
+ColorsUseSystem=Bfalse
+Colors_HTML_HTMLLinks=C-16776961
+NV_40a8f04d0d0440a8f04d0d05972711=S1574308709343
+Editor.NonlocalVariableHighlighting=Btrue
+RLOrderB2_WB_2014b_1=S0:1:
+RLHiddenB2_WB_2014b_1=I16376
+GeneralTextUseSystemFont=Bfalse
+Editor.NonlocalVariableHighlighting.TextColor=C-16735325
+GeneralEightyColumns=Bfalse
+ColorsText=C-7490873
+CommandWindowClearConfirmation=Btrue
+ColorsBackground=C-11513776
+ColorsUseMLintAutoFixBackground=Btrue
+Color_CmdWinErrors=C-1703936
+GeneralNumDisplay=Sloose
+EditorCodepadHighVisible=Btrue
+RLWidthB2_WB_2014b_1_1=I130
+RLWidthB2_WB_2014b_1_0=I130
+NV_40a8f04d0d0540a8f04d0d04972711=S1574056509688
+RLPrevInitB2_WB_2014b_1=Btrue
+Colors_M_Warnings=C-28416
+Editor.VariableHighlighting.Automatic=Btrue
+Editor.VariableHighlighting.Color=C-3480090
+Desktop.Font.Text2=F0 12 Monospaced
+Color_CmdWinWarnings=C-39936
+ColorsMLintAutoFixBackground=C-1121868
+Editorhighlight-lines=C-12763843
+GeneralNumFormat2=Sshort
