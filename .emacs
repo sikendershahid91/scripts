@@ -49,8 +49,9 @@ There are two things you can do about this warning:
 
 (global-set-key [delete] 'delete-char)
 (global-set-key [kp-delete] 'delete-char)
-(cond ((not running-xemacs)
-       (global-font-lock-mode t)
+;; (cond ((not running-xemacs)
+;;       (global-font-lock-mode t)
+;;       ))
 
 (set-frame-height (selected-frame) 55)
 (set-frame-width (selected-frame) 90)
@@ -73,10 +74,10 @@ There are two things you can do about this warning:
 (setq fortran-continuation-string "&")
 (setq fortran-blink-matching-if "on")
 (setq fortran-comment-region "Cssh991 ")
-(if (not running-xemacs)
-    (require 'mwheel') ;
-    (mwheel-install) ;
-)
+;; (if (not running-xemacs)
+;;     (require 'mwheel') ;
+;;     (mwheel-install) ;
+;; )
 
 ;; HIGHLIGHT MODE
 (global-highlight-changes-mode t)
