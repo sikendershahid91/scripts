@@ -69,10 +69,65 @@ There are two things you can do about this warning:
 (defun dos2unix() (interactive)
   (goto-char (point-min))
   (while (search-forward "\r" nil t) (replace-match "")))
+       
+(setq fortran-continuation-string "&")
+(setq fortran-blink-matching-if "on")
+(setq fortran-comment-region "Cssh991 ")
+(if (not running-xemacs)
+    (require 'mwheel') ;
+    (mwheel-install) ;
+)
 
-(autoload 'octave-mode "octave" t)
-(add-to-list
- 'auto-mode-alist
- '("\\.m$" . octave-mode))
+;; HIGHLIGHT MODE
+(global-highlight-changes-mode t)
+(global-set-key (kbd "M-h") 'highlight-changes-mode)
+       
+;; MATLAB 
+(setq auto-mode-alist
+      (cons '("\\.m$" . octave-mode) auto-mode-alist))
 (setq octave-comment-char ?%)
-(setq comment-start "% ")
+(setq octave-comment-region "% ")
+(defface matlab-strings
+  '((t (:foreground "green" :weight normal)))
+  "String color for Matlab")
+(font-lock-add-keywords 'octave-mode '(("\'\\(\\(?:.\\)*?[^\\]\\)\'" 0 'matlab-strings t)))
+(font-lock-add-keywords 'octave-mode '(("\\.\\.\\..*" . font-lock-comment-face)))
+;; (autoload 'octave-mode "octave" t)
+;; (add-to-list
+;;  'auto-mode-alist
+;;  '("\\.m$" . octave-mode))
+;; (setq octave-comment-char ?%)
+;; (setq comment-start "% ")
+       
+;; RESIZE
+(defvar resize-frame-map
+  (let ((map (make-keymap)))
+       (define-key map (kbd "<up>") 'enlarge-window)
+       (define-key map (kbd "<down>") 'shrink-window)
+       (define-key map (kbd "<right>") 'enlarge-window-horizontally)
+       (define-key map (kbd "<left>") 'shrink-window-horizontally)
+       (set-char-table-range (nth 1 map) t 'resize-frame-done)
+       map))
+(define-minor-mode resize-frame
+  "Use C-c C-c to move windows"
+  :init-value nil
+  :lighter " ResizeFrame"
+  :keymap resize-frame-map
+  :global t
+  (if (<= (length (window-list)) 1)
+      (progn (setq resize-frame nil)
+        (message "There is only one frame"))
+      (message "move arrow keys to adjust window")))
+       
+(defun resize-frame-done ()
+  (interactive)
+  (setq resize-frame nil)
+  (message "Done"))
+       
+(global-set-key (kbd "C-c C-c") 'resize-frame)
+(provide 'resize-frame)
+       
+;; ORG MODE
+(transient-mark-mode 1)
+(require 'org)
+(add-to-list 'auto-mode-alist '("\\.org$" . org-mode))
