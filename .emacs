@@ -47,9 +47,16 @@ There are two things you can do about this warning:
  ;; If there is more than one, they won't work right.
  )
 
+(global-set-key [delete] 'delete-char)
+(global-set-key [kp-delete] 'delete-char)
+(cond ((not running-xemacs)
+       (global-font-lock-mode t)
+
 (set-frame-height (selected-frame) 55)
 (set-frame-width (selected-frame) 90)
 (setq require-final-newline t)
+(setq next-line-add-newlines nil)
+(setq-default tab-width 8 indent-tabs-mode nil)
 (setq case-fold-search t)
 (setq column-number-mode t)
 (set-background-color "grey13")
@@ -59,6 +66,9 @@ There are two things you can do about this warning:
 (global-linum-mode t)
 (setq linum-format "%d")
 (tool-bar-mode -1)
+(defun dos2unix() (interactive)
+  (goto-char (point-min))
+  (while (search-forward "\r" nil t) (replace-match "")))
 
 (autoload 'octave-mode "octave" t)
 (add-to-list
