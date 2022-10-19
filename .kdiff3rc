@@ -1,0 +1,10 @@
+AutoAdvance=1
+AutoAdvanceDelay=500
+AutoCopySelection=0
+AutoDetectUnicodeA=1
+AutoDetectUnicodeB=1
+AutoDetectUnicodeC=1
+AutoIndentation=1
+AutoMergeRegExp=.*\\$(Version\|Header\|Date\|Author).*\\$.*
+AutoSaveAndQuitOnMergeWithoutConflicts=0
+AutoSelectOutEncoding=1
