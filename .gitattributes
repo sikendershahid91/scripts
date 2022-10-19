@@ -1,0 +1,9 @@
+*.pdf  binary
+*.png  binary
+*.avi  binary
+*.jpg  binary
+*.jpeg binary
+*.a    binary
+*.so   binary
+*.mat  filter=lfs diff=lfs merge=lfs -binary
+*.dat  filter=lfs diff=lfs merge=lfs -binary

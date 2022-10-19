@@ -1,0 +1,22 @@
+# files to ignore
+*.zip
+*.tar
+*.mat
+*.asv
+*.org
+*.dump
+*.log
+*.orig
+*.dat
+*~
+*.o
+*.a
+\#*
+.\#*
+
+# directories to ignore
+**/prototype/*
+**\prototype\*
+**/archive*/*
+**\archive*\*
+
