@@ -47,21 +47,31 @@ There are two things you can do about this warning:
  ;; If there is more than one, they won't work right.
  )
 
+;; ================================================================
+;; --------------------- CUSTOM CHANGES BELOW ---------------------
+;; ================================================================
+
+;; map both delete keys 
 (global-set-key [delete] 'delete-char)
 (global-set-key [kp-delete] 'delete-char)
-;; (cond ((not running-xemacs)
-;;       (global-font-lock-mode t)
-;;       ))
 
+;; Adjust GUI Size 
+(when (display-graphic-p)
 (set-frame-height (selected-frame) 55)
 (set-frame-width (selected-frame) 90)
+)
+
+;; Color scheme 
+(set-background-color "grey18")
+(set-foreground-color "LightSteelBlue1")
+
+;; Adjust character insertions 
 (setq require-final-newline t)
 (setq next-line-add-newlines nil)
 (setq-default tab-width 8 indent-tabs-mode nil)
 (setq case-fold-search t)
+
 (setq column-number-mode t)
-(set-background-color "grey13")
-(set-foreground-color "LightSteelBlue1")
 (setq frame-title-format "%b")
 (setq delete-auto-save-files t)
 (global-linum-mode t)
@@ -79,11 +89,17 @@ There are two things you can do about this warning:
 ;;     (mwheel-install) ;
 ;; )
 
-;; HIGHLIGHT MODE
+;; Text customization 
 (global-highlight-changes-mode t)
 (global-set-key (kbd "M-h") 'highlight-changes-mode)
+(show-paren-mode 1 )
+(setq show-paren-style 'expression)
+(set-face-background 'show-paren-match "grey13")
+(global-set-key [(meta down)] (lambda () (interactive) (scroll-up 4)) )
+(global-set-key [(meta up)] (lambda () (interactive) (scroll-down 4)) )
+
        
-;; MATLAB 
+;; Octave/MATLAB mode customization
 (setq auto-mode-alist
       (cons '("\\.m$" . octave-mode) auto-mode-alist))
 (setq octave-comment-char ?%)
@@ -99,36 +115,47 @@ There are two things you can do about this warning:
 ;;  '("\\.m$" . octave-mode))
 ;; (setq octave-comment-char ?%)
 ;; (setq comment-start "% ")
-       
-;; RESIZE
-(defvar resize-frame-map
-  (let ((map (make-keymap)))
-       (define-key map (kbd "<up>") 'enlarge-window)
-       (define-key map (kbd "<down>") 'shrink-window)
-       (define-key map (kbd "<right>") 'enlarge-window-horizontally)
-       (define-key map (kbd "<left>") 'shrink-window-horizontally)
-       (set-char-table-range (nth 1 map) t 'resize-frame-done)
-       map))
-(define-minor-mode resize-frame
-  "Use C-c C-c to move windows"
-  :init-value nil
-  :lighter " ResizeFrame"
-  :keymap resize-frame-map
-  :global t
-  (if (<= (length (window-list)) 1)
-      (progn (setq resize-frame nil)
-        (message "There is only one frame"))
-      (message "move arrow keys to adjust window")))
-       
-(defun resize-frame-done ()
-  (interactive)
-  (setq resize-frame nil)
-  (message "Done"))
-       
-(global-set-key (kbd "C-c C-c") 'resize-frame)
-(provide 'resize-frame)
-       
-;; ORG MODE
+
+
+;; ORG mode customization 
 (transient-mark-mode 1)
 (require 'org)
 (add-to-list 'auto-mode-alist '("\\.org$" . org-mode))
+
+;; Ediff customization
+(setq ediff-split-window-function 'split-window-horizontally)
+
+;; Interactive window resizing
+(global-set-key [(control kp-add)] (lambda () (interactive) (enlarge-window-horizontally 1)) )
+(global-set-key [(control kp-subtract)] (lambda () (interactive) (shrink-window-horizontally 1)) )
+(global-set-key [(meta kp-add)] (lambda () (interactive) (enlarge-window 1)) )
+(global-set-key [(meta kp-subtract)] (lambda () (interactive) (shrink-window 1)) )
+
+;; BELOW OBS BECAUSE OF ABOVE - START 
+;; Window resizing
+;; (defvar resize-frame-map
+;;   (let ((map (make-keymap)))
+;;        (define-key map (kbd "<up>") 'enlarge-window)
+;;        (define-key map (kbd "<down>") 'shrink-window)
+;;        (define-key map (kbd "<right>") 'enlarge-window-horizontally)
+;;        (define-key map (kbd "<left>") 'shrink-window-horizontally)
+;;        (set-char-table-range (nth 1 map) t 'resize-frame-done)
+;;        map))
+;; (define-minor-mode resize-frame
+;;   "Use C-c C-c to move windows"
+;;   :init-value nil
+;;   :lighter " ResizeFrame"
+;;   :keymap resize-frame-map
+;;   :global t
+;;   (if (<= (length (window-list)) 1)
+;;       (progn (setq resize-frame nil)
+;;         (message "There is only one frame"))
+;;       (message "move arrow keys to adjust window")))
+;; (defun resize-frame-done ()
+;;   (interactive)
+;;   (setq resize-frame nil)
+;;   (message "Done"))       
+;; (global-set-key (kbd "C-c C-c") 'resize-frame)
+;; (provide 'resize-frame)
+;; -------------------------- - END
+       
