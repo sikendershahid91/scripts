@@ -1,0 +1,36 @@
+[credential]
+    helper = tartarus
+[user]
+[core]
+    symlinks = false
+    autocrlf = false
+	editor = "'C:\\\\Program Files (x86)\\\\Emacs\\\\bin\\\\emacs.exe' -nw "
+    askpass  = git-askpass-tartarus
+    longpaths = true
+[color]
+    diff = auto
+    status = auto
+    branch = auto
+    interactive = true
+[pack]
+    packSizeLimit = 2g
+[help]
+    format = html
+[http]
+    sslVerify = true
+    sslcainfo = 'C:\\Users>>>
+[diff "astextplain"]
+    textconv = astextplain
+[rebase]
+    autosquash = true
+[bugtraq]
+    message = "#%BUGID%"
+    label = Issue:
+    append = false
+    warnifnoissue = false
+[alias]
+	checkpoint-update = "!f(){ echo "$(date) modified: $@" > .modified.dump && \
+                              git status -s >> .modified.dump    && \
+                              git commit -aF './.modified.dump'   && \
+                              git push && \
+                              rm .modified.dump; };f"

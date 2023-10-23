@@ -16,6 +16,7 @@ foreach ($docxFile in $docxFiles) {
     if ($document.Revisions.Count -gt 0) {
         # Disable review mode
         $document.TrackRevisions = $false
+        $document.AcceptAllRevisions()
     }
 
     # Generate the PDF file path
